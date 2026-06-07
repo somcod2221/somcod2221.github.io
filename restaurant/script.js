@@ -78,13 +78,17 @@ const FALLBACK_DATA = {
    (1) تحديد نوع النشاط من الرابط
    --------------------------------------------------------- */
 function detectType() {
+  // أولاً: باراميتر ?type= (له الأولوية)
+  const param = new URLSearchParams(window.location.search).get("type");
+  if (VALID_TYPES.includes(param)) return param;
+  // ثانياً: الهاش #cafe
+  const hash = window.location.hash.replace("#", "");
+  if (VALID_TYPES.includes(hash)) return hash;
+  // ثالثاً: آخر مقطع بالمسار
   const segments = window.location.pathname.split("/").filter(Boolean);
   const last = segments[segments.length - 1];
   if (VALID_TYPES.includes(last)) return last;
-  const param = new URLSearchParams(window.location.search).get("type");
-  if (VALID_TYPES.includes(param)) return param;
-  const hash = window.location.hash.replace("#", "");
-  if (VALID_TYPES.includes(hash)) return hash;
+  // الافتراضي
   return "restaurant";
 }
 
