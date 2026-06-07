@@ -346,8 +346,23 @@ ul { list-style: none; }
   .gallery-item:nth-child(4n+1) { grid-row: span 1; }
 }
 
+
 /* احترام تفضيل تقليل الحركة */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* ===== إصلاح وضوح القائمة على الجوال — المطعم والكافيه والمخبز ===== */
+@media (max-width: 860px) {
+  #navLinks {
+    background-color: var(--bg) !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    z-index: 49 !important;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  }
+  #navLinks a { color: var(--text) !important; }
 }
