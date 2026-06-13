@@ -1,1 +1,983 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوسام ستور | متجر المنتجات المنزلية المتنوعة</title>
+<meta name="description" content="الوسام ستور — متجرك الأول للمنتجات المنزلية المتنوعة: أدوات المطبخ، الأثاث، الخزائن، الكراسي، مستلزمات المنزل وأكثر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0e6f5c;--teal-2:#0a5547;--teal-soft:#13836c;
+  --gold:#f8b400;--gold-2:#e09e00;
+  --ink:#17302c;--muted:#6b7c79;--red:#d8232a;
+  --paper:#fff;--mist:#f1f4f3;--line:#e6ecea;
+  --shadow:0 10px 30px rgba(14,111,92,.10);--shadow-lg:0 24px 60px rgba(10,60,50,.18);
+  --r:16px;--maxw:1240px;
+  --head:'Tajawal',system-ui,sans-serif;--body:'Cairo',system-ui,sans-serif;
+}
+html[lang="en"]{--head:'Poppins',sans-serif;--body:'Poppins',sans-serif;}
+html[data-theme="dark"]{--paper:#0f1c1a;--mist:#13201e;--ink:#eaf3f1;--muted:#9bb0ac;--line:#1f322e;--shadow:0 10px 30px rgba(0,0,0,.4);--shadow-lg:0 24px 60px rgba(0,0,0,.55);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--head);line-height:1.25}
+::selection{background:var(--gold);color:#15302b}
 
+/* ===== ANNOUNCE (marquee) ===== */
+.announce{background:linear-gradient(90deg,var(--teal-2),var(--teal),var(--teal-soft));color:#fff;overflow:hidden;white-space:nowrap;padding:7px 0;font-size:13px;font-weight:700}
+.announce .track{display:inline-block;padding-left:100%;animation:marq 22s linear infinite}
+html[dir="ltr"] .announce .track{padding-left:0;padding-right:100%}
+.announce:hover .track{animation-play-state:paused}
+.announce b{color:var(--gold)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+html[dir="ltr"] .announce .track{animation-name:marqL}
+@keyframes marqL{from{transform:translateX(0)}to{transform:translateX(100%)}}
+
+/* ===== HEADER (compact, one row) ===== */
+header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+header.scrolled{box-shadow:0 6px 22px rgba(0,0,0,.07)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0}
+.hdr-side{display:flex;align-items:center;gap:3px}
+.icon-btn{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--ink);position:relative;transition:.22s}
+.icon-btn:hover{background:var(--mist);color:var(--teal)}
+.icon-btn svg{width:19px;height:19px}
+.lang-btn{min-width:38px;height:36px;padding:0 9px;border-radius:10px;display:grid;place-items:center;font-family:var(--head);font-weight:800;font-size:13px;color:var(--teal);border:1.5px solid var(--line);transition:.22s}
+.lang-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cart-badge{position:absolute;top:1px;left:1px;min-width:16px;height:16px;padding:0 3px;background:var(--gold);color:#15302b;border-radius:20px;font-size:10px;font-weight:800;display:grid;place-items:center;font-family:var(--body);transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+html[dir="ltr"] .cart-badge{left:auto;right:1px}
+.cart-badge.show{transform:scale(1)}
+.logo{display:flex;align-items:center;gap:8px;flex-direction:row-reverse}
+html[dir="ltr"] .logo{flex-direction:row}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(150deg,var(--teal),var(--teal-soft));display:grid;place-items:center;box-shadow:0 5px 12px rgba(14,111,92,.3);flex-shrink:0}
+.logo .mark svg{width:21px;height:21px}
+.logo .txt{display:flex;flex-direction:column;line-height:1}
+.logo .ar{font-family:var(--head);font-weight:900;font-size:16px;color:var(--teal)}
+.logo .ar b{color:var(--gold)}
+.logo .en{font-size:8px;font-weight:700;color:var(--muted);letter-spacing:1.8px;margin-top:2px}
+
+/* ===== HERO ===== */
+.hero{padding:16px 0 4px}
+.carousel{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.slides{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
+.slide{min-width:100%;position:relative;display:grid;align-items:center;min-height:330px;background:linear-gradient(120deg,var(--teal-2),var(--teal) 55%,var(--teal-soft))}
+.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.slide-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(8,50,42,.74) 6%,rgba(10,70,58,.42) 42%,rgba(10,60,50,.08) 100%)}
+html[dir="ltr"] .slide-ov{background:linear-gradient(255deg,rgba(8,50,42,.74) 6%,rgba(10,70,58,.42) 42%,rgba(10,60,50,.08) 100%)}
+.slide-copy{position:relative;z-index:2;padding:44px 50px;max-width:560px;color:#fff}
+.eyebrow{font-family:var(--head);font-weight:800;letter-spacing:5px;font-size:11px;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.slide-copy h2{font-size:clamp(26px,4.6vw,42px);font-weight:900;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,.25)}
+.slide-copy h2 em{font-style:normal;color:var(--gold)}
+.slide-copy p{font-size:15.5px;opacity:.95;max-width:420px;margin-bottom:20px}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#15302b;font-family:var(--head);font-weight:800;font-size:15px;padding:12px 28px;border-radius:50px;box-shadow:0 10px 24px rgba(248,180,0,.4);transition:.25s}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(248,180,0,.5)}
+.btn-gold svg{width:17px;height:17px}
+.trust{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:7px 22px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2)}
+.trust div{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#fff}
+.trust svg{width:16px;height:16px;color:var(--gold)}
+.dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:5}
+.dots button{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.5);transition:.3s}
+.dots button.active{background:var(--gold);width:26px;border-radius:6px}
+.c-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff;transition:.25s}
+.c-arrow:hover{background:var(--gold);color:#15302b}
+.c-arrow.prev{right:12px}.c-arrow.next{left:12px}
+html[dir="ltr"] .c-arrow.prev{right:auto;left:12px}html[dir="ltr"] .c-arrow.next{left:auto;right:12px}
+.c-arrow svg{width:19px;height:19px}
+
+/* ===== SECTIONS ===== */
+.sec{padding:40px 0}
+.sec-sm{padding:30px 0}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.sec-title h2{font-size:clamp(20px,3.4vw,28px);font-weight:900;color:var(--ink)}
+.sec-title span{display:block;width:64px;height:4px;border-radius:6px;margin-top:8px;background:linear-gradient(90deg,var(--gold),var(--teal))}
+html[dir="ltr"] .sec-title span{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.more-link{font-family:var(--head);font-weight:800;font-size:14px;color:var(--teal);display:inline-flex;align-items:center;gap:5px;transition:.2s}
+.more-link:hover{color:var(--gold-2);gap:9px}
+.more-link svg{width:15px;height:15px}
+.btn-more{background:var(--gold);color:#15302b;font-family:var(--head);font-weight:800;font-size:14px;padding:9px 22px;border-radius:11px;transition:.25s;box-shadow:0 8px 18px rgba(248,180,0,.28)}
+.btn-more:hover{background:var(--gold-2);transform:translateY(-2px)}
+
+/* ===== CATEGORIES (compact) ===== */
+.cats{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.cat{background:var(--mist);border-radius:13px;padding:13px 6px;text-align:center;border:1px solid var(--line);transition:.3s;cursor:pointer}
+.cat:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+.cat .ic{width:42px;height:42px;border-radius:12px;margin:0 auto 8px;display:grid;place-items:center;background:linear-gradient(150deg,var(--teal),var(--teal-soft));color:#fff;box-shadow:0 5px 12px rgba(14,111,92,.22)}
+.cat:nth-child(even) .ic{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#15302b}
+.cat .ic svg{width:21px;height:21px}
+.cat b{font-family:var(--head);font-weight:700;font-size:12px;display:block;line-height:1.3}
+
+/* ===== CARD ===== */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.32s;position:relative}
+.card:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg);border-color:transparent}
+.tag{position:absolute;top:10px;right:10px;z-index:3;background:var(--red);color:#fff;font-family:var(--head);font-weight:800;font-size:11px;padding:4px 9px;border-radius:7px}
+html[dir="ltr"] .tag{right:auto;left:10px}
+.tag.best{background:var(--teal);right:auto;left:10px}
+html[dir="ltr"] .tag.best{left:auto;right:10px}
+.pimg{position:relative;aspect-ratio:1/1;background:var(--mist);overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .pimg img{transform:scale(1.07)}
+.pimg.broken::after{content:var(--ph,'🛍️');position:absolute;inset:0;display:grid;place-items:center;font-size:54px;background:linear-gradient(150deg,var(--teal),var(--teal-soft))}
+.fav{position:absolute;bottom:10px;left:10px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--teal);transition:.25s;box-shadow:0 4px 10px rgba(0,0,0,.12)}
+html[dir="ltr"] .fav{left:auto;right:10px}
+.fav:hover,.fav.on{background:var(--red);color:#fff}
+.fav svg{width:17px;height:17px}
+.card-body{padding:13px 13px 0;flex:1;display:flex;flex-direction:column}
+.card-body h3{font-family:var(--head);font-weight:700;font-size:14px;color:var(--ink);min-height:40px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rate{display:flex;align-items:center;gap:4px;margin:5px 0 8px;color:var(--gold);font-size:12px}
+.rate span{color:var(--muted);font-size:11px}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:auto;flex-wrap:wrap;padding-bottom:12px}
+.price .now{font-family:var(--head);font-weight:900;font-size:17px;color:var(--red)}
+.price .now.plain{color:var(--teal)}
+.price .old{font-size:13px;color:var(--muted);text-decoration:line-through}
+.add{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--gold);color:#15302b;font-family:var(--head);font-weight:800;font-size:14px;padding:12px;transition:.25s}
+.add:hover{background:var(--gold-2)}
+.add svg{width:17px;height:17px}
+.add.done{background:var(--teal);color:#fff}
+
+/* ===== GRID ===== */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+/* ===== RAIL (auto-scroll single row) ===== */
+.rail{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--teal) transparent}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:var(--teal);border-radius:6px}
+.rail .card{min-width:215px;max-width:215px;scroll-snap-align:start}
+
+/* ===== MARQUEE (best sellers) ===== */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.mq-track{display:flex;gap:16px;width:max-content;animation:scrollx 38s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-track .card{min-width:220px;max-width:220px}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== PROMO ===== */
+.promo{position:relative;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;background:var(--mist);min-height:280px;box-shadow:var(--shadow)}
+.promo.flip{direction:ltr}
+.promo .pcopy{padding:42px;direction:inherit}
+.promo.flip .pcopy{direction:rtl}
+html[dir="ltr"] .promo .pcopy{direction:ltr}
+.promo .pcopy h3{font-size:clamp(22px,3.4vw,32px);font-weight:900;color:var(--teal);margin-bottom:9px}
+.promo .pcopy p{color:var(--muted);font-size:15px;margin-bottom:20px;max-width:350px}
+.promo .pimgb{height:100%;min-height:280px;position:relative;overflow:hidden}
+.promo .pimgb img{width:100%;height:100%;object-fit:cover}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--teal);color:var(--teal);font-family:var(--head);font-weight:800;padding:10px 24px;border-radius:50px;transition:.25s;background:var(--paper)}
+.btn-outline:hover{background:var(--teal);color:#fff}
+.btn-outline svg{width:15px;height:15px}
+
+/* ===== DELIVERY BANNER ===== */
+.deliver{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(120deg,var(--teal-2),var(--teal) 60%,var(--teal-soft));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:32px 38px;flex-wrap:wrap;box-shadow:var(--shadow)}
+.deliver::before{content:"";position:absolute;inset:0;opacity:.14;background:radial-gradient(circle at 12% 130%,#fff 0,transparent 45%)}
+.deliver .d-left{position:relative;z-index:2;display:flex;align-items:center;gap:18px}
+.deliver .d-ic{width:62px;height:62px;border-radius:18px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:var(--gold);flex-shrink:0}
+.deliver .d-ic svg{width:33px;height:33px}
+.deliver h3{font-size:clamp(20px,3vw,27px);font-weight:900;margin-bottom:4px}
+.deliver p{opacity:.9;font-size:14.5px;max-width:440px}
+.deliver .d-btn{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;font-family:var(--head);font-weight:800;font-size:16px;padding:14px 30px;border-radius:50px;box-shadow:0 10px 24px rgba(37,211,102,.4);transition:.25s;white-space:nowrap}
+.deliver .d-btn:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(37,211,102,.55)}
+.deliver .d-btn svg{width:22px;height:22px}
+@media(max-width:600px){.deliver{padding:26px 22px;justify-content:center}.deliver .d-left{flex-direction:column;text-align:center}.deliver p{margin:0 auto}}
+
+/* ===== LOCATION / MAP ===== */
+.locsec{display:grid;grid-template-columns:1.15fr 1fr;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--paper)}
+.locsec .map{position:relative;min-height:360px}
+.locsec .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.locsec .loc-info{padding:34px}
+.loc-row{display:flex;gap:14px;margin-bottom:20px}
+.loc-row .li-ic{width:46px;height:46px;border-radius:13px;background:var(--mist);color:var(--teal);display:grid;place-items:center;flex-shrink:0}
+.loc-row .li-ic svg{width:22px;height:22px}
+.loc-row b{display:block;font-family:var(--head);font-weight:800;font-size:15px;color:var(--ink);margin-bottom:2px}
+.loc-row span{color:var(--muted);font-size:14px;line-height:1.6}
+.loc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-family:var(--head);font-weight:800;font-size:14px;padding:11px 22px;border-radius:50px;transition:.25s}
+.btn-teal:hover{background:var(--teal-2);transform:translateY(-2px)}
+.btn-teal svg{width:16px;height:16px}
+@media(max-width:780px){.locsec{grid-template-columns:1fr}.locsec .map{min-height:260px;order:2}}
+
+/* ===== WHY ===== */
+.why{background:linear-gradient(120deg,var(--teal-2),var(--teal));color:#fff}
+.why .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feat{text-align:center;padding:8px}
+.feat .fic{width:60px;height:60px;margin:0 auto 12px;border-radius:18px;display:grid;place-items:center;background:rgba(255,255,255,.12);color:var(--gold)}
+.feat .fic svg{width:29px;height:29px}
+.feat h4{font-family:var(--head);font-weight:800;font-size:17px;margin-bottom:5px}
+.feat p{font-size:13.5px;opacity:.85}
+
+/* ===== NEWSLETTER ===== */
+.news-band{background:var(--mist);border-radius:24px;padding:40px;text-align:center;border:1px solid var(--line)}
+.news-band h3{font-size:24px;font-weight:900;color:var(--teal);margin-bottom:7px}
+.news-band p{color:var(--muted);margin-bottom:20px}
+.news-form{display:flex;gap:10px;max-width:500px;margin:0 auto}
+.news-form input{flex:1;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:13px 16px;font-family:var(--body);font-size:15px;outline:none}
+.news-form input:focus{border-color:var(--teal)}
+.news-form button{background:var(--teal);color:#fff;font-family:var(--head);font-weight:800;padding:0 28px;border-radius:12px;transition:.25s}
+.news-form button:hover{background:var(--teal-2)}
+
+/* ===== FOOTER ===== */
+footer{background:linear-gradient(160deg,var(--teal),var(--teal-2));color:#fff;margin-top:54px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;padding:50px 0 26px}
+.foot-brand .logo .ar{color:#fff}.foot-brand .logo .ar b{color:var(--gold)}
+.foot-brand .logo .en{color:rgba(255,255,255,.7)}
+.foot-brand p{margin:16px 0;opacity:.85;font-size:14px;max-width:330px}
+.socials{display:flex;gap:9px}
+.socials a{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:.25s}
+.socials a:hover{background:var(--gold);border-color:var(--gold);color:#15302b;transform:translateY(-3px)}
+.socials svg{width:18px;height:18px}
+.foot-col h4{font-family:var(--head);font-size:16px;margin-bottom:14px;position:relative;padding-bottom:9px}
+.foot-col h4::after{content:"";position:absolute;bottom:0;right:0;width:38px;height:3px;border-radius:4px;background:var(--gold)}
+html[dir="ltr"] .foot-col h4::after{right:auto;left:0}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:10px}
+.foot-col a{opacity:.85;font-size:14px;transition:.2s}
+.foot-col a:hover{opacity:1;color:var(--gold)}
+.foot-bar{border-top:1px solid rgba(255,255,255,.15);padding:16px 0;text-align:center;font-size:13px;opacity:.85}
+.foot-bar b{color:var(--gold)}
+
+/* ===== FABs ===== */
+.fab-stack{position:fixed;bottom:20px;left:20px;z-index:80;display:flex;flex-direction:column;gap:12px}
+html[dir="ltr"] .fab-stack{left:auto;right:20px}
+.fab{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:transform .25s}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:29px;height:29px;color:#fff}
+.fab.wa{background:#25d366;animation:pulse 2.4s infinite}
+.fab.call{background:var(--teal)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.totop{position:fixed;bottom:20px;right:20px;z-index:80;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;transform:translateY(12px)}
+html[dir="ltr"] .totop{right:auto;left:20px}
+.totop.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.totop svg{width:20px;height:20px}
+
+/* ===== DRAWERS ===== */
+.overlay{position:fixed;inset:0;background:rgba(8,30,26,.5);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.35s}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer,.mnav{position:fixed;top:0;left:0;height:100%;background:var(--paper);z-index:95;transform:translateX(-100%);transition:transform .4s cubic-bezier(.65,0,.35,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+html[dir="ltr"] .drawer,html[dir="ltr"] .mnav{left:auto;right:0;transform:translateX(100%)}
+.drawer{width:390px;max-width:90vw}
+.mnav{width:340px;max-width:88vw;overflow-y:auto}
+.drawer.show,.mnav.show{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:19px;font-weight:900;color:var(--teal)}
+.drawer-head button,.mnav-top button{width:36px;height:36px;border-radius:10px;background:var(--mist);color:var(--ink);display:grid;place-items:center}
+.drawer-head svg{width:19px;height:19px}
+.drawer-body{flex:1;overflow-y:auto;padding:14px}
+.empty-cart{text-align:center;padding:54px 18px;color:var(--muted)}
+.empty-cart svg{width:64px;height:64px;color:var(--line);margin-bottom:12px}
+.ci{display:flex;gap:11px;padding:11px;border:1px solid var(--line);border-radius:13px;margin-bottom:11px;align-items:center}
+.ci-img{width:60px;height:60px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--mist)}
+.ci-img img{width:100%;height:100%;object-fit:cover}
+.ci-info{flex:1;min-width:0}
+.ci-info h4{font-family:var(--head);font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-price{color:var(--red);font-weight:800;font-size:13.5px;font-family:var(--head)}
+.qty{display:flex;align-items:center;gap:8px;margin-top:5px}
+.qty button{width:25px;height:25px;border-radius:7px;background:var(--mist);color:var(--ink);font-weight:800;display:grid;place-items:center;font-size:15px}
+.qty span{font-weight:800;min-width:16px;text-align:center}
+.ci-del{color:var(--muted);margin-right:auto}
+html[dir="ltr"] .ci-del{margin-right:0;margin-left:auto}
+.ci-del:hover{color:var(--red)}
+.ci-del svg{width:17px;height:17px}
+.drawer-foot{padding:16px 18px;border-top:1px solid var(--line)}
+.drawer-foot .row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13.5px;color:var(--muted)}
+.drawer-foot .total{font-size:19px;font-weight:900;color:var(--ink);font-family:var(--head)}
+.drawer-foot .total b{color:var(--teal)}
+.checkout{width:100%;background:var(--gold);color:#15302b;font-family:var(--head);font-weight:800;font-size:15px;padding:14px;border-radius:12px;margin-top:12px;transition:.25s}
+.checkout:hover{background:var(--gold-2)}
+.btn-back{width:100%;background:transparent;border:2px solid var(--line);color:var(--ink);font-family:var(--head);font-weight:800;font-size:14px;padding:12px;border-radius:12px;margin-top:9px;transition:.25s}
+.btn-back:hover{border-color:var(--teal);color:var(--teal)}
+.mnav-top{padding:16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.mnav-social{display:flex;gap:9px;padding:16px;flex-wrap:wrap;justify-content:center}
+.mnav-social a{width:42px;height:42px;border-radius:50%;background:var(--gold);color:#15302b;display:grid;place-items:center;transition:.25s}
+.mnav-social a:hover{transform:translateY(-3px)}
+.mnav-social svg{width:19px;height:19px}
+.mnav-links{padding:6px 0;flex:1}
+.mnav-links a{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-family:var(--head);font-weight:700;font-size:15px;border-bottom:1px solid var(--line);transition:.2s}
+.mnav-links a:hover{background:var(--mist);color:var(--teal)}
+.mnav-links a svg{width:16px;height:16px;color:var(--muted)}
+.mnav-foot{padding:16px;display:grid;gap:5px}
+.mnav-foot button{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:11px;font-family:var(--head);font-weight:700;font-size:14.5px;color:var(--ink);transition:.2s;text-align:start}
+.mnav-foot button:hover{background:var(--mist)}
+.mnav-foot button svg{width:21px;height:21px;color:var(--teal)}
+
+/* ===== CATEGORY VIEW ===== */
+.catview{position:fixed;inset:0;z-index:100;background:var(--paper);transform:translateY(100%);transition:transform .42s cubic-bezier(.65,0,.35,1);display:flex;flex-direction:column;visibility:hidden}
+.catview.show{transform:translateY(0);visibility:visible}
+.catview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);z-index:2}
+.catview-head h2{font-family:var(--head);font-weight:900;font-size:clamp(18px,4vw,24px);color:var(--teal)}
+.catview-head h2 small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--muted)}
+.catview-head .back{display:flex;align-items:center;gap:7px;font-family:var(--head);font-weight:800;font-size:14px;color:var(--ink);background:var(--mist);padding:9px 16px;border-radius:11px;transition:.2s}
+.catview-head .back:hover{background:var(--teal);color:#fff}
+.catview-head .back svg{width:17px;height:17px}
+html[dir="ltr"] .catview-head .back svg{transform:scaleX(-1)}
+.catview-body{flex:1;overflow-y:auto;padding:20px 16px 60px}
+.catview-body .grid{max-width:var(--maxw);margin:0 auto}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:28px;left:50%;translate:-50% 30px;z-index:120;background:var(--teal);color:#fff;padding:12px 22px;border-radius:50px;font-family:var(--head);font-weight:700;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:.35s;display:flex;align-items:center;gap:8px}
+.toast.show{opacity:1;translate:-50% 0}
+.toast svg{width:19px;height:19px;color:var(--gold)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1024px){.cats{grid-template-columns:repeat(6,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.why .feats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.slide-copy{padding:30px 26px}.promo,.promo.flip{grid-template-columns:1fr;direction:rtl}html[dir="ltr"] .promo,html[dir="ltr"] .promo.flip{direction:ltr}.promo .pimgb{min-height:200px;order:2}.foot-grid{grid-template-columns:1fr;gap:26px}}
+@media(max-width:600px){.cats{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.why .feats{grid-template-columns:1fr 1fr}.news-form{flex-direction:column}.logo .en{display:none}.sec,.sec-sm{padding:30px 0}.rail .card,.mq-track .card{min-width:180px;max-width:180px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="announce"><span class="track" id="announce"></span></div>
+
+<header id="header">
+  <div class="wrap hdr">
+    <div class="hdr-side">
+      <button class="icon-btn" onclick="openCart()" aria-label="cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="icon-btn" onclick="toast(t('t_search'))" aria-label="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </div>
+    <a href="#top" class="logo" aria-label="Al Wisam Store">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.2" fill="#f8b400"/></svg></span>
+      <span class="txt"><span class="ar" id="logoName">الوسام <b>ستور</b></span><span class="en">AL WISAM STORE</span></span>
+    </a>
+    <div class="hdr-side">
+      <button class="lang-btn" id="langBtn" onclick="switchLang()">EN</button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5 3.5 3.5M20.5 20.5 19 19M19 5l1.5-1.5M3.5 20.5 5 19"/></svg>
+      </button>
+      <button class="icon-btn" onclick="openMenu()" aria-label="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="carousel" id="carousel">
+      <div class="slides" id="slides"></div>
+      <button class="c-arrow prev" onclick="move(-1)" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg></button>
+      <button class="c-arrow next" onclick="move(1)" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg></button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <section class="sec-sm wrap reveal">
+    <div class="sec-head"><div class="sec-title"><h2 data-i="cats_t"></h2><span></span></div></div>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section class="sec-sm wrap reveal" id="best">
+    <div class="sec-head"><div class="sec-title"><h2 data-i="best_t"></h2><span></span></div></div>
+    <div class="rail" id="rail-best"></div>
+  </section>
+
+  <section class="sec-sm wrap reveal" id="discounts">
+    <div class="sec-head"><a class="more-link" data-i="more" href="#discounts"></a><div class="sec-title"><h2 data-i="disc_t"></h2><span></span></div></div>
+    <div class="rail" id="rail-discounts"></div>
+  </section>
+
+  <section class="sec-sm wrap reveal" id="packages">
+    <div class="sec-head"><a class="more-link" data-i="more" href="#packages"></a><div class="sec-title"><h2 data-i="pack_t"></h2><span></span></div></div>
+    <div class="rail" id="rail-packages"></div>
+  </section>
+
+  <section class="sec wrap reveal">
+    <div class="deliver">
+      <div class="d-left">
+        <div class="d-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="6" width="14" height="11" rx="1.5"/><path d="M15 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div>
+        <div><h3 data-i="deliv_h"></h3><p data-i="deliv_p"></p></div>
+      </div>
+      <a class="d-btn" id="delivLink" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2m0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20m4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c2 .8 2 .6 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1z"/></svg><span data-i="deliv_btn"></span></a>
+    </div>
+  </section>
+
+  <section class="sec wrap reveal">
+    <div class="sec-head"><div class="sec-title"><h2 data-i="loc_t"></h2><span></span></div></div>
+    <div class="locsec">
+      <div class="map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Al Wisam Store location" src="https://maps.google.com/maps?q=15.5007,32.5599&z=14&output=embed"></iframe></div>
+      <div class="loc-info">
+        <div class="loc-row"><div class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><b data-i="loc_addr_l"></b><span data-i="loc_addr"></span></div></div>
+        <div class="loc-row"><div class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b data-i="loc_hours_l"></b><span data-i="loc_hours"></span></div></div>
+        <div class="loc-row"><div class="li-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z"/></svg></div><div><b data-i="loc_phone_l"></b><span dir="ltr">+249 96 516 0505</span></div></div>
+        <div class="loc-actions">
+          <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&query=15.5007,32.5599" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-i="loc_maps_btn"></span></a>
+          <a class="btn-teal" href="tel:+249965160505"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z"/></svg><span data-i="loc_call_btn"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why reveal">
+    <div class="wrap sec">
+      <div class="feats">
+        <div class="feat"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h4 data-i="f1h"></h4><p data-i="f1p"></p></div>
+        <div class="feat"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v6h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><h4 data-i="f2h"></h4><p data-i="f2p"></p></div>
+        <div class="feat"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7"/></svg></div><h4 data-i="f3h"></h4><p data-i="f3p"></p></div>
+        <div class="feat"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4 data-i="f4h"></h4><p data-i="f4p"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap reveal">
+    <div class="news-band">
+      <h3 data-i="news_h"></h3><p data-i="news_p"></p>
+      <div class="news-form"><input type="email" id="newsEmail" data-iph="news_ph"><button onclick="subscribe()" data-i="news_btn"></button></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a href="#top" class="logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="10" r="2.2" fill="#f8b400"/></svg></span><span class="txt"><span class="ar" data-i="logo"></span><span class="en">AL WISAM STORE</span></span></a>
+      <p data-i="foot_p"></p>
+      <div class="socials">
+        <a href="https://wa.me/249965160505" aria-label="whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2m0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20m4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c2 .8 2 .6 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1z"/></svg></a>
+        <a href="#" aria-label="tiktok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2v3a5 5 0 0 0 4 4v3a8 8 0 0 1-4-1v6a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3V2z"/></svg></a>
+        <a href="#" aria-label="snapchat"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.6 0 4.5 2 4.6 4.6 0 .8 0 1.6-.1 2.4.4.2.9.3 1.3.1.6-.2 1 .6.5 1-.5.4-1.2.5-1.7.7-.2.6.6 1.6 1.6 2.4.9.7 1.9 1 2.6 1.1.4 0 .5.6.1.8-.8.4-1.7.4-2.1.9-.2.3 0 .8-.4 1-.4.1-.9-.2-1.5-.2-.8 0-1.5.3-2.3 1-.7.6-1.5 1-2.6 1s-1.9-.4-2.6-1c-.8-.7-1.5-1-2.3-1-.6 0-1.1.3-1.5.2-.4-.2-.2-.7-.4-1-.4-.5-1.3-.5-2.1-.9-.4-.2-.3-.8.1-.8.7-.1 1.7-.4 2.6-1.1 1-.8 1.8-1.8 1.6-2.4-.5-.2-1.2-.3-1.7-.7-.5-.4-.1-1.2.5-1 .4.2.9.1 1.3-.1-.1-.8-.1-1.6-.1-2.4C7.5 4 9.4 2 12 2z"/></svg></a>
+        <a href="#" aria-label="x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H3l7-9L2 2h6l4 6z"/></svg></a>
+        <a href="#" aria-label="instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col"><h4 data-i="fc1_t"></h4><ul id="fcol1"></ul></div>
+    <div class="foot-col"><h4 data-i="fc2_t"></h4><ul id="fcol2"></ul></div>
+  </div>
+  <div class="foot-bar wrap" data-i="copyright"></div>
+</footer>
+
+<div class="fab-stack">
+  <a class="fab wa" href="https://wa.me/249965160505" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2m0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20m4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c2 .8 2 .6 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1z"/></svg>
+  </a>
+  <a class="fab call" href="tel:+249965160505" aria-label="Call">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z"/></svg>
+  </a>
+</div>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 15 6-6 6 6"/></svg></button>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h3 data-i="cart_t"></h3><button onclick="closeAll()" aria-label="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot" style="display:none">
+    <div class="row"><span data-i="cart_sub"></span><span id="subTotal"></span></div>
+    <div class="row"><span data-i="cart_ship"></span><span data-i="cart_ship_v"></span></div>
+    <div class="total"><span data-i="cart_total"></span> <b id="grandTotal"></b></div>
+    <button class="checkout" data-i="cart_checkout" onclick="checkout()"></button>
+    <button class="btn-back" data-i="cart_back" onclick="closeAll()"></button>
+  </div>
+</aside>
+
+<aside class="mnav" id="mnav">
+  <div class="mnav-top"><a href="#top" class="logo" onclick="closeAll()"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="10" r="2.2" fill="#f8b400"/></svg></span><span class="txt"><span class="ar" data-i="logo"></span></span></a><button onclick="closeAll()" aria-label="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="mnav-social">
+    <a href="https://wa.me/249965160505" aria-label="whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2"/></svg></a>
+    <a href="#" aria-label="tiktok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2v3a5 5 0 0 0 4 4v3a8 8 0 0 1-4-1v6a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3V2z"/></svg></a>
+    <a href="#" aria-label="snap"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg></a>
+    <a href="#" aria-label="x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H3l7-9L2 2h6l4 6z"/></svg></a>
+    <a href="#" aria-label="instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+  </div>
+  <nav class="mnav-links" id="mnavLinks"></nav>
+  <div class="mnav-foot">
+    <button onclick="toast(t('t_login'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> <span data-i="m_login"></span></button>
+    <button onclick="toast(t('t_fav'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg> <span data-i="m_fav"></span></button>
+    <button onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg> <span data-i="m_theme"></span></button>
+  </div>
+</aside>
+
+<div class="catview" id="catView">
+  <div class="catview-head">
+    <h2 id="catTitle"></h2>
+    <button class="back" onclick="closeCat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg><span data-i="cat_back"></span></button>
+  </div>
+  <div class="catview-body"><div class="grid" id="catGrid"></div></div>
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg><span id="toastMsg"></span></div>
+
+<script>
+/* ===== i18n ===== */
+const I={
+ ar:{
+  announce:'🚚 شحن مجاني للطلبات فوق 200,000 ج.س &nbsp;•&nbsp; خصومات تصل إلى 30% على باقات المنزل الذكية &nbsp;•&nbsp; توصيل لكل أنحاء السودان &nbsp;•&nbsp; ',
+  logo:'الوسام ستور',cats_t:'التصنيفات',best_t:'الأكثر مبيعاً',disc_t:'تخفيضات',pack_t:'باقات التوفير',
+  cab_t:'خزائن ودواليب',kit_t:'أدوات المطبخ',chair_t:'كراسي',new_t:'جديدنا',sup_t:'مستلزمات المنزل',
+  more:'المزيد ›',add:'أضف للسلة',shop:'تسوّق الآن',browse:'استعرض المنتجات',cur:'ج.س',
+  promo1_h:'أناقة وتنظيم في مكان واحد',promo1_p:'تشكيلة خزائن ودواليب متنوعة تناسب كل ديكور، بتصاميم عملية وخامات تدوم طويلاً.',
+  promo2_h:'أدوات المطبخ',promo2_p:'كل ما يلزم مطبخك من حلل وأواني وأدوات تقديم بجودة عالية تجعل الطبخ متعة.',
+  f1h:'جودة موثوقة',f1p:'منتجات مختارة بعناية لضمان الأفضل لبيتك.',
+  f2h:'توصيل سريع',f2p:'شحن لكل أنحاء السودان بأسرع وقت ممكن.',
+  f3h:'عروض وباقات',f3p:'خصومات حقيقية وباقات اقتصادية متجددة.',
+  f4h:'دعم متواصل',f4p:'فريقنا جاهز لمساعدتك عبر واتساب والاتصال.',
+  news_h:'اشترك ليصلك كل جديد وعروض حصرية',news_p:'كن أول من يعرف عن التخفيضات والباقات الجديدة من الوسام ستور.',
+  news_ph:'أدخل بريدك الإلكتروني',news_btn:'اشترك',
+  deliv_h:'تحتاج توصيل لطلبك؟',deliv_p:'تواصل معنا مباشرة عبر واتساب ونوصّل طلبك إلى باب بيتك في كل أنحاء السودان.',deliv_btn:'تواصل للتوصيل',
+  deliv_msg:'السلام عليكم، أرغب في خدمة التوصيل من الوسام ستور 🚚\n\nالمنتجات المطلوبة: \nالعنوان: \nرقم الهاتف: ',
+  loc_t:'موقعنا على الخريطة',loc_addr_l:'العنوان',loc_addr:'الخرطوم، السودان — شارع الجمهورية (يرجى تعديل العنوان الفعلي لمحلك).',
+  loc_hours_l:'ساعات العمل',loc_hours:'يومياً من 9 صباحاً حتى 10 مساءً',
+  loc_phone_l:'للاتصال والاستفسار',loc_maps_btn:'افتح في خرائط جوجل',loc_call_btn:'اتصل الآن',
+  foot_p:'متجرك الأول للمنتجات المنزلية المتنوعة في السودان — كل ما يحتاجه بيتك من أدوات المطبخ والأثاث والمستلزمات بجودة عالية وأسعار مناسبة.',
+  fc1_t:'الوسام ستور',fc2_t:'سياسات المتجر',
+  fc1:['من نحن','الشحن والتوصيل','فروعنا','المدونة','تواصل معنا'],
+  fc2:['مركز الاسترجاع','سياسة الاستبدال والاسترجاع','سياسة الخصوصية','سياسة إلغاء الطلب','سياسة الضمان والصيانة'],
+  copyright:'© 2026 الوسام ستور — جميع الحقوق محفوظة. صُمّم بحب لبيتك 💚',
+  cart_t:'سلة الشراء',cart_empty:'سلتك فارغة الآن — ابدأ التسوق وأضف منتجاتك المفضلة 💚',
+  cart_sub:'المجموع الفرعي',cart_ship:'الشحن',cart_ship_v:'يُحسب عند الدفع',cart_total:'المجموع:',cart_checkout:'إتمام عملية الشراء',cart_back:'الرجوع للمتجر',
+  order_head:'أرغب في توصيل الطلبات التالية:',
+  m_login:'تسجيل دخول',m_fav:'المفضلة',m_theme:'الوضع الليلي',cat_back:'رجوع للمتجر',
+  nav:['التخفيضات','باقات التوفير','الأكثر مبيعاً','خزائن ودواليب','أدوات المطبخ','كراسي','جديدنا','مستلزمات المنزل','التنظيف والعناية','أثاث منزلي','ديكور المنزل','أثاث مكتبي','الأجهزة المنزلية والكهربائية','مستلزمات رحلات'],
+  reviews:'تقييم',
+  t_search:'ابحث عن أي منتج منزلي تحتاجه 🔎',t_addcart:'أُضيف إلى السلة 🛒',t_added:'✓ تمت الإضافة',
+  t_fav_on:'أُضيف للمفضلة ❤️',t_fav_off:'أُزيل من المفضلة',t_cat:'تصنيف: ',t_checkout:'تم تجهيز طلبك — أكمل الدفع 💳',
+  t_login:'سجّل دخولك للوصول لطلباتك ونقاط المكافآت 👤',t_fav:'قائمة المفضلة فارغة حالياً ❤️',
+  t_sub_ok:'تم اشتراكك بنجاح 🎉',t_sub_bad:'من فضلك أدخل بريداً صحيحاً ✉️',
+  t_day:'تم تفعيل الوضع النهاري ☀️',t_night:'تم تفعيل الوضع الليلي 🌙'
+ },
+ en:{
+  announce:'🚚 Free shipping over 200,000 SDG &nbsp;•&nbsp; Up to 30% off smart-home bundles &nbsp;•&nbsp; Delivery across Sudan &nbsp;•&nbsp; ',
+  logo:'Al Wisam Store',cats_t:'Categories',best_t:'Best Sellers',disc_t:'Discounts',pack_t:'Saving Bundles',
+  cab_t:'Cabinets & Wardrobes',kit_t:'Kitchenware',chair_t:'Chairs',new_t:'New Arrivals',sup_t:'Home Essentials',
+  more:'View all ›',add:'Add to cart',shop:'Shop now',browse:'Browse products',cur:'SDG',
+  promo1_h:'Elegance & order in one place',promo1_p:'A versatile range of cabinets and wardrobes for every décor — practical designs and durable materials.',
+  promo2_h:'Kitchenware',promo2_p:'Everything your kitchen needs — pots, cookware and serving tools of high quality that make cooking a joy.',
+  f1h:'Trusted quality',f1p:'Carefully selected products to bring the best to your home.',
+  f2h:'Fast delivery',f2p:'Shipping across Sudan in the shortest time possible.',
+  f3h:'Deals & bundles',f3p:'Real discounts and refreshed value bundles.',
+  f4h:'Always supported',f4p:'Our team is ready to help via WhatsApp and call.',
+  news_h:'Subscribe for news & exclusive offers',news_p:'Be the first to know about discounts and new bundles from Al Wisam Store.',
+  news_ph:'Enter your email',news_btn:'Subscribe',
+  deliv_h:'Need your order delivered?',deliv_p:'Contact us directly on WhatsApp and we will deliver to your door across Sudan.',deliv_btn:'Contact for delivery',
+  deliv_msg:'Hello, I would like delivery from Al Wisam Store 🚚\n\nItems: \nAddress: \nPhone: ',
+  loc_t:'Find us on the map',loc_addr_l:'Address',loc_addr:'Khartoum, Sudan — Al Jumhuriya St. (please update with your real store address).',
+  loc_hours_l:'Working hours',loc_hours:'Daily from 9 AM to 10 PM',
+  loc_phone_l:'Call & enquiries',loc_maps_btn:'Open in Google Maps',loc_call_btn:'Call now',
+  foot_p:'Your first stop for diverse home products in Sudan — everything your home needs, from kitchenware and furniture to essentials, at great quality and fair prices.',
+  fc1_t:'Al Wisam Store',fc2_t:'Store Policies',
+  fc1:['About us','Shipping & delivery','Our branches','Blog','Contact us'],
+  fc2:['Return center','Exchange & return policy','Privacy policy','Order cancellation policy','Warranty & maintenance'],
+  copyright:'© 2026 Al Wisam Store — All rights reserved. Made with love for your home 💚',
+  cart_t:'Shopping Cart',cart_empty:'Your cart is empty — start shopping and add your favourites 💚',
+  cart_sub:'Subtotal',cart_ship:'Shipping',cart_ship_v:'Calculated at checkout',cart_total:'Total:',cart_checkout:'Proceed to checkout',cart_back:'Back to store',
+  order_head:'I would like delivery of the following orders:',
+  m_login:'Sign in',m_fav:'Favourites',m_theme:'Dark mode',cat_back:'Back to store',
+  nav:['Discounts','Saving bundles','Best sellers','Cabinets & wardrobes','Kitchenware','Chairs','New arrivals','Home essentials','Cleaning & care','Home furniture','Home décor','Office furniture','Home appliances','Travel gear'],
+  reviews:'reviews',
+  t_search:'Search for any home product you need 🔎',t_addcart:'Added to cart 🛒',t_added:'✓ Added',
+  t_fav_on:'Added to favourites ❤️',t_fav_off:'Removed from favourites',t_cat:'Category: ',t_checkout:'Order ready — complete payment 💳',
+  t_login:'Sign in to access your orders and reward points 👤',t_fav:'Your favourites list is empty ❤️',
+  t_sub_ok:'Subscribed successfully 🎉',t_sub_bad:'Please enter a valid email ✉️',
+  t_day:'Day mode on ☀️',t_night:'Night mode on 🌙'
+ }
+};
+let LANG='ar';
+const t=k=>I[LANG][k]||k;
+const RATE=4400;
+const sdg=u=>Math.round(u*RATE).toLocaleString('en-US')+' '+I[LANG].cur;
+
+/* ===== DATA (a:ar name, e:en name, r:reviews) ===== */
+const cats=[
+ {a:'تخفيضات',e:'Discounts',i:'<path d="M9 11 3 5l6-2 2 6zM21 19l-6-6-2 6 6 2zM3 21 21 3"/>'},
+ {a:'أدوات المطبخ',e:'Kitchenware',i:'<path d="M3 2v7c0 1 1 2 2 2s2-1 2-2V2M5 11v11M15 2c-2 0-3 2-3 5s1 5 3 5 3-2 3-5V2M18 12v10"/>'},
+ {a:'الأثاث والديكور',e:'Furniture',i:'<path d="M4 18v-6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6M4 18h16M6 22v-4M18 22v-4"/>'},
+ {a:'مستلزمات المنزل',e:'Essentials',i:'<path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>'},
+ {a:'التنظيف والعناية',e:'Cleaning',i:'<path d="M19 11 9 21l-6-6L13 5zM14 6l4 4"/>'},
+ {a:'الأجهزة المنزلية',e:'Appliances',i:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6h2"/>'},
+ {a:'مستلزمات الرحلات',e:'Travel',i:'<rect x="5" y="8" width="14" height="12" rx="2"/><path d="M9 8V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3"/>'},
+ {a:'ورقيات وبلاستيكات',e:'Disposables',i:'<path d="M6 2h9l3 3v17H6zM15 2v4h4"/>'},
+ {a:'التقديم والضيافة',e:'Serving',i:'<path d="M12 3v3M8 6h8l-1 5a4 4 0 0 1-6 0zM12 14v6M8 20h8"/>'},
+ {a:'ألعاب',e:'Toys',i:'<rect x="2" y="7" width="20" height="11" rx="4"/><path d="M7 12h3M8.5 10.5v3"/><circle cx="16" cy="11" r="1"/>'},
+ {a:'أثاث مكتبي',e:'Office',i:'<rect x="3" y="4" width="18" height="6" rx="1"/><path d="M7 10v10M17 10v10M5 14h14"/>'},
+ {a:'ديكور المنزل',e:'Décor',i:'<path d="M12 2 2 8l10 6 10-6zM2 8v8l10 6 10-6V8"/>'}
+];
+
+/* ===== 10 products per category — [ar, en, photoId, emoji, price$, old$, reviews] ===== */
+const U='https://images.unsplash.com/photo-',Q='?w=600&q=80';
+const CATD={
+ 0:[ /* تخفيضات */
+  ['طقم حلل جرانيت 10 قطع','10-pc granite cookware set','1584990347449-a2d4c2c9f997','🍲',35,46,412],
+  ['مكنسة بخار 2 في 1','2-in-1 steam mop','1558317374-067fb5f30001','🧹',17,22,356],
+  ['طقم سكاكين 6 قطع','6-pc knife set','1593618998160-e34014e67546','🔪',9.5,14,221],
+  ['خلاط كهربائي قوي','Powerful electric blender','1556909114-f6e7ad7d3136','🥤',25,34,180],
+  ['طقم أكواب زجاج 6 قطع','6-pc glass cup set','1556910103-1c02745aae4d','🥛',8,11,143],
+  ['مقلاة جرانيت 28 سم','Granite frying pan 28cm','1585515320310-259814833e62','🍳',12,16,167],
+  ['منظم أدراج المطبخ','Kitchen drawer organizer','1610701596007-11502861dcfa','🗂️',7,10,98],
+  ['بطانية ناعمة فخمة','Plush soft blanket','1616627561839-074385245ff6','🧶',20,26,254],
+  ['طقم مناشف 4 قطع','4-pc towel set','1620626011761-996317b8d101','🧺',14,19,131],
+  ['صندوق تخزين بعجلات','Storage box with wheels','1558997519-83ea9252edf8','📦',9,12,210]
+ ],
+ 1:[ /* أدوات المطبخ */
+  ['زبدية زجاج دائرية 2 لتر','Round 2L glass bowl','1556910103-1c02745aae4d','🥗',6.9,9,130],
+  ['برطمان زجاجي للتخزين','Glass storage jar','1602143407151-7111542de6e8','🫙',4.6,6,110],
+  ['طقم ملاعق سيليكون 6 قطع','6-pc silicone spoon set','1590794056226-79ef3a8147e1','🥄',6,8,92],
+  ['مقلاة غير لاصقة 28 سم','Non-stick pan 28cm','1585515320310-259814833e62','🍳',12,16,154],
+  ['طقم سكاكين بحامل','Knife set with block','1593618998160-e34014e67546','🔪',18,24,86],
+  ['مصفاة ستانلس ستيل','Stainless steel colander','1556909114-f6e7ad7d3136','🧆',5,7,64],
+  ['لوح تقطيع خشب طبيعي','Natural wood cutting board','1584990347449-a2d4c2c9f997','🪵',7,9,73],
+  ['طقم أوعية تحضير 3 قطع','3-pc mixing bowls','1556910103-1c02745aae4d','🥣',11,15,81],
+  ['غلاية ماء كهربائية','Electric kettle','1556909114-f6e7ad7d3136','☕',16,21,120],
+  ['طقم حافظات طعام 3 قطع','3-pc food containers','1610701596007-11502861dcfa','🍱',9,12,99]
+ ],
+ 2:[ /* الأثاث والديكور */
+  ['كرسي بوكليه ناعم أنيق','Elegant bouclé chair','1586023492125-27b2c045efd7','🪑',65,80,120],
+  ['طاولة قهوة وسط عصرية','Modern coffee table','1538688525198-9b88f6f53126','🛋️',80,0,44],
+  ['خزانة جانبية بأرفف','Side cabinet with shelves','1595428774223-ef52624120d2','🗄️',99,120,64],
+  ['كومود غرفة نوم 3 أدراج','3-drawer bedroom dresser','1556228453-efd6c1ff04f6','🗄️',120,140,38],
+  ['مكتبة رفوف خشبية','Wooden bookshelf','1507842217343-583bb7270b66','📚',70,85,29],
+  ['طاولة طعام مستديرة','Round dining table','1577140917170-285929fb55b7','🍽️',150,0,18],
+  ['كرسي بار معدني دوار','Metal swivel bar stool','1598300042247-d088f8ab3a91','🪑',42,52,71],
+  ['ركن قهوة فاخر','Premium coffee corner','1567538096630-e0c55bd6374c','☕',99,115,52],
+  ['طقم طاولات جانبية','Side table set','1532372576444-dda954194ad0','🪑',95,0,22],
+  ['خزانة أحذية خشبية','Wooden shoe cabinet','1620626011761-996317b8d101','👟',85,99,41]
+ ],
+ 3:[ /* مستلزمات المنزل */
+  ['صندوق تخزين بغطاء وعجلات','Storage box, lid & wheels','1558997519-83ea9252edf8','📦',9,12,210],
+  ['طقم لحاف أطفال وردي','Pink kids comforter set','1522771739844-6a9f6d5f14af','🛏️',30,38,140],
+  ['بطانية فخمة مقاس كينج','King-size plush blanket','1616627561839-074385245ff6','🧶',20,26,165],
+  ['حقيبة سفر صلبة بعجلات','Hard-shell spinner suitcase','1565026057447-bc90a3dceb87','🧳',45,55,88],
+  ['مكواة بخار كهربائية','Electric steam iron','1556909114-f6e7ad7d3136','🔥',22,28,77],
+  ['حامل ملابس قابل للطي','Foldable clothes rack','1556228453-efd6c1ff04f6','👕',18,24,52],
+  ['سلة غسيل قابلة للطي','Foldable laundry basket','1610701596007-11502861dcfa','🧺',8,11,64],
+  ['منظم خزانة الملابس','Wardrobe organizer','1610701596007-11502861dcfa','🗃️',12,16,49],
+  ['مرتبة سرير مفردة','Single bed mattress','1631049307264-da0ec9d70304','🛏️',33,40,103],
+  ['طقم شراشف سرير قطن','Cotton bed sheet set','1522771739844-6a9f6d5f14af','🛌',16,21,90]
+ ],
+ 4:[ /* التنظيف والعناية */
+  ['مكنسة بخار 2 في 1','2-in-1 steam mop','1558317374-067fb5f30001','🧹',17,22,356],
+  ['ممسحة دوارة مع دلو','Spin mop with bucket','1581578731548-c64695cc6952','🪣',14,19,180],
+  ['باقة تنظيف متكاملة 12 قطعة','12-pc cleaning bundle','1581578731548-c64695cc6952','🧽',43,50,175],
+  ['مكنسة كهربائية يدوية','Handheld vacuum cleaner','1558317374-067fb5f30001','🔌',35,45,142],
+  ['منظف زجاج رذاذ','Glass cleaner spray','1581578731548-c64695cc6952','🧴',4,6,66],
+  ['فرشاة تنظيف كهربائية','Electric cleaning brush','1558317374-067fb5f30001','🪥',20,26,58],
+  ['سلة مهملات بدواسة','Pedal trash bin','1610701596007-11502861dcfa','🗑️',12,16,71],
+  ['قفازات تنظيف مطاطية','Rubber cleaning gloves','1581578731548-c64695cc6952','🧤',3,4,40],
+  ['مناشف ميكروفايبر 5 قطع','5-pc microfiber cloths','1620626011761-996317b8d101','🧻',5,7,55],
+  ['معطر جو منزلي','Home air freshener','1581578731548-c64695cc6952','🌸',6,8,48]
+ ],
+ 5:[ /* الأجهزة المنزلية */
+  ['خلاط كهربائي متعدد السرعات','Multi-speed blender','1556909114-f6e7ad7d3136','🥤',25,34,180],
+  ['غلاية ماء كهربائية','Electric water kettle','1556909114-f6e7ad7d3136','☕',16,21,120],
+  ['محمصة خبز كهربائية','Electric bread toaster','1556910103-1c02745aae4d','🍞',18,24,96],
+  ['مكواة بخار كهربائية','Electric steam iron','1556909114-f6e7ad7d3136','🔥',22,28,77],
+  ['مروحة مكتب هادئة','Quiet desk fan','1556228453-efd6c1ff04f6','🌀',20,27,84],
+  ['خفاقة يدوية كهربائية','Electric hand mixer','1556909114-f6e7ad7d3136','🧁',19,25,61],
+  ['مكنسة كهربائية منزلية','Home vacuum cleaner','1558317374-067fb5f30001','🔌',55,70,103],
+  ['سخان ماء صغير','Mini water heater','1556909114-f6e7ad7d3136','🚿',30,38,47],
+  ['ميزان مطبخ رقمي','Digital kitchen scale','1556910103-1c02745aae4d','⚖️',9,12,72],
+  ['عصارة فواكه كهربائية','Electric fruit juicer','1556909114-f6e7ad7d3136','🍊',28,36,69]
+ ],
+ 6:[ /* مستلزمات الرحلات */
+  ['حقيبة سفر صلبة بعجلات','Hard-shell spinner suitcase','1565026057447-bc90a3dceb87','🧳',45,55,88],
+  ['حقيبة ظهر للسفر','Travel backpack','1553062407-98eeb64c6a62','🎒',25,32,74],
+  ['صندوق تبريد محمول','Portable cooler box','1558997519-83ea9252edf8','🧊',30,40,52],
+  ['خيمة تخييم 4 أشخاص','4-person camping tent','1504280390367-361c6d9f38f4','⛺',60,75,33],
+  ['كرسي تخييم قابل للطي','Folding camping chair','1598300042247-d088f8ab3a91','🪑',14,19,61],
+  ['ترمس حافظ للحرارة','Insulated thermos flask','1602143407151-7111542de6e8','🍶',10,13,80],
+  ['مصباح تخييم LED','LED camping lantern','1507473885765-e6ed057f782c','🔦',8,11,45],
+  ['طقم أدوات شواء','BBQ tool set','1584990347449-a2d4c2c9f997','🍖',16,21,38],
+  ['وسادة سفر للرقبة','Travel neck pillow','1616627561839-074385245ff6','💺',6,8,57],
+  ['حصيرة نزهة قابلة للطي','Foldable picnic mat','1610701596007-11502861dcfa','🧺',9,12,42]
+ ],
+ 7:[ /* ورقيات وبلاستيكات */
+  ['أكواب ورقية 50 قطعة','50-pc paper cups','1556910103-1c02745aae4d','☕',3,4,64],
+  ['أطباق بلاستيك 25 قطعة','25-pc plastic plates','1556911220-bff31c812dba','🍽️',2.5,3.5,52],
+  ['مناديل ورقية علبة','Tissue box','1610701596007-11502861dcfa','🧻',1.5,2,90],
+  ['أكياس قمامة لفة','Trash bags roll','1610701596007-11502861dcfa','🗑️',2,3,71],
+  ['ورق ألمنيوم للمطبخ','Kitchen aluminium foil','1584990347449-a2d4c2c9f997','📜',3,4,48],
+  ['أكواب بلاستيك 50 قطعة','50-pc plastic cups','1556910103-1c02745aae4d','🥤',2,3,55],
+  ['ملاعق بلاستيك 50 قطعة','50-pc plastic spoons','1590794056226-79ef3a8147e1','🥄',1.5,2,40],
+  ['ورق زبدة للخبز','Baking parchment paper','1584990347449-a2d4c2c9f997','🧈',2.5,3,33],
+  ['أكياس حفظ طعام','Food storage bags','1610701596007-11502861dcfa','🛍️',2,3,46],
+  ['صحون ألمنيوم 10 قطع','10-pc foil trays','1556911220-bff31c812dba','🍱',3.5,5,37]
+ ],
+ 8:[ /* التقديم والضيافة */
+  ['طقم تقديم 5 قطع','5-pc serving set','1556911220-bff31c812dba','🍽️',18,24,84],
+  ['دلة قهوة عربية','Arabic coffee pot','1556909114-f6e7ad7d3136','☕',22,28,67],
+  ['صينية تقديم خشب','Wooden serving tray','1584990347449-a2d4c2c9f997','🪵',12,16,58],
+  ['طقم فناجين قهوة 6 قطع','6-pc coffee cups','1556910103-1c02745aae4d','☕',14,19,72],
+  ['ترمس شاي حافظ للحرارة','Insulated tea thermos','1602143407151-7111542de6e8','🍵',16,21,49],
+  ['طقم أطباق عشاء 12 قطعة','12-pc dinner set','1556911220-bff31c812dba','🍛',38,48,55],
+  ['حامل حلويات 3 طوابق','3-tier dessert stand','1556910103-1c02745aae4d','🍰',15,20,41],
+  ['طقم كاسات عصير 6 قطع','6-pc juice glasses','1556910103-1c02745aae4d','🥤',9,12,63],
+  ['مبخرة تقديم معدنية','Metal incense burner','1602143407151-7111542de6e8','🪔',11,15,38],
+  ['طقم شوك وملاعق 24 قطعة','24-pc cutlery set','1590794056226-79ef3a8147e1','🍴',20,26,70]
+ ],
+ 9:[ /* ألعاب */
+  ['سيارة أطفال كهربائية','Kids electric ride-on car','1558060370-d644479cb6f7','🚗',70,90,52],
+  ['دراجة أطفال','Kids bicycle','1532372576444-dda954194ad0','🚲',45,58,47],
+  ['مكعبات بناء تعليمية','Educational building blocks','1610701596007-11502861dcfa','🧱',12,16,88],
+  ['دمية محشوة ناعمة','Soft plush toy','1559454403-b8fb88521f11','🧸',8,11,74],
+  ['لعبة بازل تركيب','Jigsaw puzzle','1610701596007-11502861dcfa','🧩',6,8,60],
+  ['سيارة تحكم عن بعد','Remote control car','1558060370-d644479cb6f7','🏎️',22,28,55],
+  ['مجموعة ألوان وتلوين','Coloring & paint set','1513519245088-0e12902e35ca','🎨',5,7,49],
+  ['كرة قدم للأطفال','Kids football','1532372576444-dda954194ad0','⚽',9,12,66],
+  ['طقم صلصال تشكيل','Modelling play dough','1610701596007-11502861dcfa','🎭',7,9,42],
+  ['خيمة لعب للأطفال','Kids play tent','1504280390367-361c6d9f38f4','⛺',18,24,38]
+ ],
+ 10:[ /* أثاث مكتبي */
+  ['كرسي مكتب دوار مريح','Ergonomic office chair','1586023492125-27b2c045efd7','💺',55,70,96],
+  ['مكتب كمبيوتر عصري','Modern computer desk','1593642632823-8f785ba67e45','🖥️',65,80,71],
+  ['مكتبة رفوف للكتب','Office bookshelf','1507842217343-583bb7270b66','📚',70,85,40],
+  ['كرسي زائر اجتماعات','Visitor meeting chair','1598300042247-d088f8ab3a91','🪑',35,45,52],
+  ['منظم سطح المكتب','Desk organizer','1610701596007-11502861dcfa','🗂️',8,11,63],
+  ['لمبة مكتب LED','LED desk lamp','1507473885765-e6ed057f782c','💡',14,19,80],
+  ['لوح كتابة أبيض','Whiteboard','1593642632823-8f785ba67e45','📝',18,24,33],
+  ['خزانة ملفات معدنية','Metal filing cabinet','1595428774223-ef52624120d2','🗄️',60,75,29],
+  ['مسند قدم مكتبي','Office footrest','1586023492125-27b2c045efd7','🦶',12,16,44],
+  ['حامل لابتوب قابل للتعديل','Adjustable laptop stand','1593642632823-8f785ba67e45','💻',15,20,58]
+ ],
+ 11:[ /* ديكور المنزل */
+  ['لوحة جدارية فنية','Framed wall art','1513519245088-0e12902e35ca','🖼️',18,24,67],
+  ['مزهرية زجاج أنيقة','Elegant glass vase','1602143407151-7111542de6e8','🏺',10,13,58],
+  ['سجادة غرفة معيشة','Living room area rug','1616627561839-074385245ff6','🟫',30,40,49],
+  ['مرآة حائط دائرية','Round wall mirror','1556228453-efd6c1ff04f6','🪞',25,32,52],
+  ['شمعدان معدني ديكور','Decorative candle holder','1602143407151-7111542de6e8','🕯️',9,12,44],
+  ['ساعة حائط عصرية','Modern wall clock','1507842217343-583bb7270b66','🕐',14,19,71],
+  ['نبتة صناعية بأصيص','Potted artificial plant','1485955900006-10f4d324d411','🪴',12,16,63],
+  ['ستارة بلاك آوت','Blackout curtain','1556228453-efd6c1ff04f6','🪟',20,26,40],
+  ['وسادة كنب ديكور','Decorative sofa cushion','1567016432779-094069958ea5','🛋️',7,9,55],
+  ['إضاءة سلسلة LED','LED string lights','1507473885765-e6ed057f782c','✨',6,8,80]
+ ]
+};
+function catItems(idx){return CATD[idx].map(x=>({a:x[0],e:x[1],img:U+x[2]+Q,ph:x[3],u:x[4],o:x[5],r:x[6]}));}
+
+const best=[
+ {a:'طقم حلل جرانيت أخضر 10 قطع',e:'10-pc green granite cookware set',img:'https://images.unsplash.com/photo-1584990347449-a2d4c2c9f997?w=600&q=80',ph:'🍲',u:35,o:46,r:412},
+ {a:'مكنسة بخار كهربائية 2 في 1',e:'2-in-1 electric steam mop',img:'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600&q=80',ph:'🧹',u:17,o:22,r:356},
+ {a:'كرسي بوكليه ناعم أنيق',e:'Soft bouclé accent chair',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80',ph:'🪑',u:65,o:80,r:289},
+ {a:'باقة النوم الاقتصادية',e:'Economy sleep bundle',img:'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80',ph:'🛏️',u:52,o:57,r:540},
+ {a:'صندوق تخزين بغطاء وعجلات',e:'Storage box with lid & wheels',img:'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',ph:'📦',u:9,o:12,r:478},
+ {a:'بطانية فخمة ناعمة كينج',e:'Plush king-size blanket',img:'https://images.unsplash.com/photo-1616627561839-074385245ff6?w=600&q=80',ph:'🧶',u:20,o:26,r:301},
+ {a:'برطمان زجاجي للتخزين',e:'Glass storage jar',img:'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80',ph:'🫙',u:4.6,o:6,r:265}
+];
+
+const P={
+ discounts:[
+  {a:'طقم حلل جرانيت غير لاصق 10 قطع',e:'10-pc non-stick granite set',img:'https://images.unsplash.com/photo-1584990347449-a2d4c2c9f997?w=600&q=80',ph:'🍲',u:35,o:46,r:212},
+  {a:'باقة الراحة المتكاملة — مرتبة + وسادتين',e:'Comfort bundle — mattress + 2 pillows',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80',ph:'🛏️',u:33,o:40,r:188},
+  {a:'مكنسة بخار كهربائية 2 في 1',e:'2-in-1 electric steam mop',img:'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600&q=80',ph:'🧹',u:17,o:22,r:140},
+  {a:'طقم سكاكين ستانلس ستيل 6 قطع',e:'6-pc stainless steel knife set',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=600&q=80',ph:'🔪',u:9.5,o:14,r:96},
+  {a:'طقم أكواب زجاجية 6 قطع',e:'6-pc glass cup set',img:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80',ph:'🥤',u:8,o:11,r:77},
+  {a:'منظم أدراج المطبخ',e:'Kitchen drawer organizer',img:'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80',ph:'🗂️',u:7,o:10,r:64}
+ ],
+ packages:[
+  {a:'باقة النوم الاقتصادية — سرير + مرتبة',e:'Economy sleep bundle — bed + mattress',img:'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80',ph:'🛏️',u:52,o:57,r:240},
+  {a:'باقة النظافة المتكاملة 12 قطعة',e:'12-pc complete cleaning bundle',img:'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80',ph:'🧽',u:43,o:50,r:175},
+  {a:'باقة المطبخ الكاملة — أواني وتخزين',e:'Full kitchen bundle — cookware & storage',img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',ph:'🍳',u:60,o:72,r:133},
+  {a:'باقة التنظيم الذكية للمنزل',e:'Smart home organizing bundle',img:'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80',ph:'📦',u:38,o:45,r:121},
+  {a:'باقة الضيافة والتقديم',e:'Hosting & serving bundle',img:'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&q=80',ph:'🍽️',u:48,o:58,r:88}
+ ],
+ cabinets:[
+  {a:'خزانة جانبية بأرفف خشبية فاخرة',e:'Premium wooden side cabinet',img:'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80',ph:'🗄️',u:99,o:120,r:64},
+  {a:'ركن قهوة فاخر بتصميم عصري',e:'Modern coffee corner unit',img:'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80',ph:'☕',u:99,o:115,r:52},
+  {a:'خزانة أحذية خشبية مشبكة',e:'Wooden lattice shoe cabinet',img:'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80',ph:'👟',u:85,o:99,r:41},
+  {a:'كومود غرفة نوم 3 أدراج',e:'3-drawer bedroom dresser',img:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&q=80',ph:'🗄️',u:120,o:140,r:38}
+ ],
+ kitchen:[
+  {a:'زبدية دائرية زجاج 2 لتر مقاس 21 سم',e:'Round 2L glass bowl, 21cm',img:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80',ph:'🥗',u:6.9,o:9,r:130},
+  {a:'برطمان كازفا زجاجي للتخزين الفاخر',e:'Kazva premium glass storage jar',img:'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80',ph:'🫙',u:4.6,o:6,r:110},
+  {a:'طقم ملاعق سيليكون للطبخ 6 قطع',e:'6-pc silicone cooking spoon set',img:'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=600&q=80',ph:'🥄',u:6,o:8,r:92},
+  {a:'مقلاة جرانيت غير لاصقة 28 سم',e:'Non-stick granite frying pan, 28cm',img:'https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&q=80',ph:'🍳',u:12,o:16,r:154}
+ ],
+ chairs:[
+  {a:'كرسي بوكليه ناعم بتصميم أنيق',e:'Elegant soft bouclé chair',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80',ph:'🪑',u:65,o:80,r:120},
+  {a:'كرسي كاونتر جلد للمطبخ بمقعد دوار',e:'Leather swivel counter stool',img:'https://images.unsplash.com/photo-1503602642458-232111445657?w=600&q=80',ph:'🪑',u:48,o:60,r:97},
+  {a:'كرسي تيرينا فاخر لطاولات الطعام',e:'Terina premium dining chair',img:'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80',ph:'🪑',u:58,o:70,r:83},
+  {a:'كرسي بار معدني قابل للدوران',e:'Metal swivel bar stool',img:'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80',ph:'🪑',u:42,o:52,r:71}
+ ],
+ new:[
+  {a:'طقم طاولات قهوة لافرينتا 3 قطع',e:'Lavrenta 3-pc coffee table set',img:'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80',ph:'🪑',u:233,o:0,r:24},
+  {a:'طقم طاولات أورفكس رخامية',e:'Orfex marble table set',img:'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80',ph:'🛋️',u:80,o:0,r:31},
+  {a:'طاولة طعام مستديرة خشبية',e:'Round wooden dining table',img:'https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=600&q=80',ph:'🍽️',u:150,o:0,r:18},
+  {a:'طقم طاولات جانبية معدنية',e:'Metal side table set',img:'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=600&q=80',ph:'🪑',u:95,o:0,r:22}
+ ],
+ supplies:[
+  {a:'صندوق تخزين بلاستيك بغطاء وعجلات',e:'Plastic storage box, lid & wheels',img:'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',ph:'📦',u:9,o:12,r:210},
+  {a:'طقم لحاف أطفال وردي ناعم',e:'Soft pink kids comforter set',img:'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&q=80',ph:'🛏️',u:30,o:38,r:140},
+  {a:'بطانية فخمة ناعمة مقاس كينج',e:'Plush king-size blanket',img:'https://images.unsplash.com/photo-1616627561839-074385245ff6?w=600&q=80',ph:'🧶',u:20,o:26,r:165},
+  {a:'حقيبة سفر صلبة بعجلات دوارة',e:'Hard-shell spinner suitcase',img:'https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=600&q=80',ph:'🧳',u:45,o:55,r:88}
+ ]
+};
+
+/* slides with images */
+const slides=[
+ {img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80',ph:'🍳',eb:'ALWISAM STORE',h_ar:'باقات <em>المنزل الذكية</em>',h_en:'<em>Smart-home</em> bundles',p_ar:'كل ما يحتاجه بيتك في مكان واحد — أدوات مطبخ، تنظيم وتنظيف بجودة عالية وأسعار تناسب الجميع.',p_en:'Everything your home needs in one place — kitchen, organizing and cleaning, high quality at fair prices.',href:'#discounts',trust:1},
+ {img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1400&q=80',ph:'🛏️',eb_ar:'عروض حصرية',eb_en:'EXCLUSIVE OFFERS',h_ar:'تخفيضات <em>حتى 30%</em>',h_en:'<em>Up to 30%</em> off',p_ar:'اغتنم أقوى العروض على الأثاث وأدوات المطبخ والمستلزمات المنزلية لفترة محدودة.',p_en:'Grab the best deals on furniture, kitchenware and home essentials for a limited time.',href:'#discounts'},
+ {img:'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1400&q=80',ph:'🛋️',eb_ar:'جديدنا',eb_en:'NEW ARRIVALS',h_ar:'أناقة <em>وراحة تدوم</em>',h_en:'<em>Lasting</em> comfort & style',p_ar:'تشكيلة مميزة من الأثاث والكراسي والخزائن بتصاميم تناسب كل ديكور.',p_en:'A distinctive range of furniture, chairs and cabinets to suit every décor.',href:'#new'}
+];
+
+/* ===== fallback ===== */
+function brk(img){
+ const p=img.closest('.pimg,.pimgb,.ci-img,.slide');
+ if(!p)return;
+ if(p.classList.contains('pimg')){p.classList.add('broken');p.style.setProperty('--ph',"'"+(img.dataset.ph||'🛍️')+"'");img.remove();}
+ else if(p.classList.contains('slide')){img.remove();}
+ else{p.style.cssText+='display:grid;place-items:center;background:linear-gradient(150deg,var(--teal),var(--teal-soft))';p.innerHTML='<span style="font-size:54px">'+(img.dataset.ph||'🛍️')+'</span>';}
+}
+
+/* ===== render helpers ===== */
+function name(p){return LANG==='ar'?p.a:p.e}
+function cardHTML(p,id){
+ const old=p.o?`<span class="old">${sdg(p.o)}</span>`:'';
+ const tag=p.o?`<span class="tag">-${Math.round((1-p.u/p.o)*100)}%</span>`:'';
+ return `<article class="card">${tag}
+  <div class="pimg"><img src="${p.img}" alt="${name(p)}" loading="lazy" data-ph="${p.ph}" onerror="brk(this)">
+   <button class="fav" onclick="this.classList.toggle('on');toast(this.classList.contains('on')?t('t_fav_on'):t('t_fav_off'))" aria-label="fav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></button>
+  </div>
+  <div class="card-body"><h3>${name(p)}</h3>
+   <div class="rate">★★★★★ <span>(${p.r} ${t('reviews')})</span></div>
+   <div class="price"><span class="now ${p.o?'':'plain'}">${sdg(p.u)}</span>${old}</div>
+  </div>
+  <button class="add" onclick='addCart(${JSON.stringify({a:p.a,e:p.e,u:p.u,img:p.img,ph:p.ph,id:id})},this)'>
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.5 12h11l2-8H6"/></svg>${t('add')}</button>
+ </article>`;
+}
+function renderProducts(){
+ Object.keys(P).forEach(sec=>{
+  const el=document.getElementById('grid-'+sec)||document.getElementById('rail-'+sec);
+  if(el)el.innerHTML=P[sec].map((p,i)=>cardHTML(p,sec+'-'+i)).join('');
+ });
+ // best sellers rail
+ document.getElementById('rail-best').innerHTML=best.map((p,i)=>cardHTML(p,'best-'+i)).join('');
+}
+function renderCats(){
+ document.getElementById('cats').innerHTML=cats.map((c,idx)=>
+  `<div class="cat" onclick="openCat(${idx})"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${c.i}</svg></div><b>${LANG==='ar'?c.a:c.e}</b></div>`).join('');
+}
+let curCat=null;
+function openCat(idx){
+ curCat=idx;
+ document.getElementById('catTitle').innerHTML=`${LANG==='ar'?cats[idx].a:cats[idx].e}<small>${CATD[idx].length} ${LANG==='ar'?'منتج':'products'}</small>`;
+ document.getElementById('catGrid').innerHTML=catItems(idx).map((p,i)=>cardHTML(p,'cat'+idx+'-'+i)).join('');
+ document.getElementById('catView').classList.add('show');
+ document.querySelector('.catview-body').scrollTop=0;
+ lock(1);
+}
+function closeCat(){curCat=null;document.getElementById('catView').classList.remove('show');lock(0);}
+function renderSlides(){
+ document.getElementById('slides').innerHTML=slides.map(s=>{
+  const eb=s.eb||(LANG==='ar'?s.eb_ar:s.eb_en);
+  const h=LANG==='ar'?s.h_ar:s.h_en;const pp=LANG==='ar'?s.p_ar:s.p_en;
+  const trust=s.trust?`<div class="trust">
+    <div><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/></svg>${LANG==='ar'?'جودة عالية':'Top quality'}</div>
+    <div><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11 12 3l9 8v9H3z"/></svg>${LANG==='ar'?'لكل منزل':'For every home'}</div>
+    <div><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="7" width="18" height="13" rx="2"/></svg>${LANG==='ar'?'باقات ذكية':'Smart bundles'}</div>
+    <div><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/></svg>${LANG==='ar'?'موثوق وآمن':'Safe & trusted'}</div>
+   </div>`:'';
+  return `<div class="slide">
+   <img class="slide-bg" src="${s.img}" alt="" data-ph="${s.ph}" onerror="brk(this)">
+   <div class="slide-ov"></div>
+   <div class="slide-copy"><div class="eyebrow">${eb}</div><h2>${h}</h2><p>${pp}</p>
+    <a href="${s.href}" class="btn-gold">${t('shop')}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></a>
+    ${trust}</div></div>`;
+ }).join('');
+ buildDots();go(cur,true);
+}
+function renderStatic(){
+ document.getElementById('announce').innerHTML=t('announce').repeat(2);
+ document.querySelectorAll('[data-i]').forEach(el=>el.innerHTML=t(el.dataset.i));
+ document.querySelectorAll('[data-iph]').forEach(el=>el.placeholder=t(el.dataset.iph));
+ document.getElementById('logoName').innerHTML=LANG==='ar'?'الوسام <b>ستور</b>':'Al <b>Wisam</b>';
+ document.getElementById('fcol1').innerHTML=I[LANG].fc1.map(x=>`<li><a href="#">${x}</a></li>`).join('');
+ document.getElementById('fcol2').innerHTML=I[LANG].fc2.map(x=>`<li><a href="#">${x}</a></li>`).join('');
+ document.getElementById('mnavLinks').innerHTML=I[LANG].nav.map(x=>`<a href="#" onclick="closeAll();toast('${x}')">${x}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></a>`).join('');
+ document.getElementById('langBtn').textContent=LANG==='ar'?'EN':'ع';
+ document.getElementById('delivLink').href='https://wa.me/249965160505?text='+encodeURIComponent(t('deliv_msg'));
+}
+function renderAll(){renderStatic();renderCats();renderSlides();renderProducts();renderCart();if(curCat!==null)openCat(curCat);}
+
+/* ===== language ===== */
+function switchLang(){
+ LANG=LANG==='ar'?'en':'ar';
+ document.documentElement.lang=LANG;
+ document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
+ renderAll();
+}
+
+/* ===== cart ===== */
+let cart=[];
+function addCart(p,btn){
+ const ex=cart.find(i=>i.id===p.id);
+ if(ex)ex.q++;else cart.push({...p,q:1});
+ renderCart();
+ if(btn){btn.classList.add('done');btn.textContent=t('t_added');
+  setTimeout(()=>{btn.classList.remove('done');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.5 12h11l2-8H6"/></svg>'+t('add');},1100);}
+ toast(t('t_addcart'));
+}
+function changeQ(id,d){const it=cart.find(i=>i.id===id);if(!it)return;it.q+=d;if(it.q<=0)cart=cart.filter(i=>i.id!==id);renderCart();}
+function delItem(id){cart=cart.filter(i=>i.id!==id);renderCart();}
+function renderCart(){
+ const n=cart.reduce((s,i)=>s+i.q,0);
+ const b=document.getElementById('cartBadge');b.textContent=n;b.classList.toggle('show',n>0);
+ const body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot');
+ if(!cart.length){body.innerHTML=`<div class="empty-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.5 12h11l2-8H6"/></svg><p>${t('cart_empty')}</p></div>`;foot.style.display='none';return;}
+ body.innerHTML=cart.map(i=>`<div class="ci"><div class="ci-img"><img src="${i.img}" alt="" data-ph="${i.ph}" onerror="brk(this)"></div>
+  <div class="ci-info"><h4>${LANG==='ar'?i.a:i.e}</h4><div class="ci-price">${sdg(i.u*i.q)}</div>
+   <div class="qty"><button onclick="changeQ('${i.id}',1)">+</button><span>${i.q}</span><button onclick="changeQ('${i.id}',-1)">−</button></div></div>
+  <button class="ci-del" onclick="delItem('${i.id}')" aria-label="del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div>`).join('');
+ const total=cart.reduce((s,i)=>s+i.u*i.q,0);
+ document.getElementById('subTotal').textContent=sdg(total);
+ document.getElementById('grandTotal').textContent=sdg(total);
+ foot.style.display='block';
+}
+
+/* ===== drawers ===== */
+const ov=document.getElementById('overlay');
+function openCart(){closeAll();document.getElementById('drawer').classList.add('show');ov.classList.add('show');lock(1)}
+function openMenu(){closeAll();document.getElementById('mnav').classList.add('show');ov.classList.add('show');lock(1)}
+function closeAll(){document.getElementById('drawer').classList.remove('show');document.getElementById('mnav').classList.remove('show');ov.classList.remove('show');lock(0)}
+function lock(s){document.body.style.overflow=s?'hidden':''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();closeCat();}});
+
+/* ===== carousel (fast) ===== */
+let cur=0;const dotsEl=document.getElementById('dots');const SP=3000;
+function buildDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('button');d.onclick=()=>{go(i);reset()};dotsEl.appendChild(d)})}
+function go(i,silent){cur=(i+slides.length)%slides.length;document.getElementById('slides').style.transform=`translateX(${(LANG==='ar'?1:-1)*cur*100}%)`;[...dotsEl.children].forEach((d,x)=>d.classList.toggle('active',x===cur))}
+function move(d){go(cur+d);reset()}
+let timer=setInterval(()=>go(cur+1),SP);
+function reset(){clearInterval(timer);timer=setInterval(()=>go(cur+1),SP)}
+
+/* ===== rails auto-scroll ===== */
+function autoRail(el){
+ setInterval(()=>{
+  if(!el||el.matches(':hover'))return;
+  const max=el.scrollWidth-el.clientWidth;
+  const sl=Math.abs(el.scrollLeft);
+  if(sl>=max-6)el.scrollTo({left:0,behavior:'smooth'});
+  else el.scrollBy({left:(document.documentElement.dir==='rtl'?-1:1)*230,behavior:'smooth'});
+ },3000);
+}
+
+/* ===== theme/toast/misc ===== */
+function toggleTheme(){const h=document.documentElement;const dk=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',dk?'light':'dark');toast(dk?t('t_day'):t('t_night'));}
+let tt;function toast(m){document.getElementById('toastMsg').textContent=m;const x=document.getElementById('toast');x.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>x.classList.remove('show'),2500);}
+function checkout(){
+ if(!cart.length){toast(t('cart_empty'));return;}
+ const lines=cart.map((i,n)=>`${n+1}. ${LANG==='ar'?i.a:i.e} ×${i.q}`).join('\n');
+ const msg=t('order_head')+'\n'+lines;
+ window.open('https://wa.me/249965160505?text='+encodeURIComponent(msg),'_blank');
+ toast(t('t_checkout'));
+}
+function subscribe(){const e=document.getElementById('newsEmail');if(e.value&&e.value.includes('@')){toast(t('t_sub_ok'));e.value='';}else toast(t('t_sub_bad'));}
+
+const header=document.getElementById('header'),totop=document.getElementById('totop');
+addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>10);totop.classList.toggle('show',scrollY>500)});
+const io=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
+
+/* ===== init ===== */
+renderAll();
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+autoRail(document.getElementById('rail-best'));
+autoRail(document.getElementById('rail-discounts'));
+autoRail(document.getElementById('rail-packages'));
+</script>
+</body>
+</html>
