@@ -308,9 +308,9 @@ html[dir="ltr"] .ci-del{margin-right:0;margin-left:auto}
 .catview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);z-index:2}
 .catview-head h2{font-family:var(--head);font-weight:900;font-size:clamp(18px,4vw,24px);color:var(--teal)}
 .catview-head h2 small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--muted)}
-.catview-head .back{display:flex;align-items:center;gap:7px;font-family:var(--head);font-weight:800;font-size:14px;color:var(--ink);background:var(--mist);padding:9px 16px;border-radius:11px;transition:.2s}
-.catview-head .back:hover{background:var(--teal);color:#fff}
-.catview-head .back svg{width:17px;height:17px}
+.catview-head .back{display:flex;align-items:center;gap:8px;font-family:var(--head);font-weight:800;font-size:15px;color:#15302b;background:var(--gold);padding:12px 24px;border-radius:12px;box-shadow:0 8px 20px rgba(248,180,0,.45);transition:.2s}
+.catview-head .back:hover{background:var(--gold-2);transform:translateY(-2px);box-shadow:0 12px 26px rgba(248,180,0,.55)}
+.catview-head .back svg{width:18px;height:18px}
 html[dir="ltr"] .catview-head .back svg{transform:scaleX(-1)}
 .catview-body{flex:1;overflow-y:auto;padding:20px 16px 60px}
 .catview-body .grid{max-width:var(--maxw);margin:0 auto}
@@ -330,19 +330,7 @@ html[dir="ltr"] .catview-head .back svg{transform:scaleX(-1)}
 </style>
 </head>
 <body>
-<a href="../" id="homeBtn" style="position:fixed;top:80px;z-index:9999;display:inline-flex;align-items:center;gap:.4rem;background:#E0703A;color:#fff;padding:.5rem .9rem;border-radius:999px;font-family:sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">
-  <span id="homeBtnIcon">⟵</span><span id="homeBtnTxt">Home</span>
-</a>
-<script>
-  (function(){
-    var rtl = document.documentElement.dir === "rtl" ||
-              document.body.dir === "rtl";
-    var btn = document.getElementById("homeBtn");
-    btn.style[rtl ? "right" : "left"] = "14px";
-    document.getElementById("homeBtnTxt").textContent = rtl ? "الرئيسية" : "Home";
-    document.getElementById("homeBtnIcon").textContent = rtl ? "⟶" : "⟵";
-  })();
-</script>
+
 <div class="announce"><span class="track" id="announce"></span></div>
 
 <header id="header">
@@ -395,11 +383,6 @@ html[dir="ltr"] .catview-head .back svg{transform:scaleX(-1)}
   <section class="sec-sm wrap reveal" id="discounts">
     <div class="sec-head"><a class="more-link" data-i="more" href="#discounts"></a><div class="sec-title"><h2 data-i="disc_t"></h2><span></span></div></div>
     <div class="rail" id="rail-discounts"></div>
-  </section>
-
-  <section class="sec-sm wrap reveal" id="packages">
-    <div class="sec-head"><a class="more-link" data-i="more" href="#packages"></a><div class="sec-title"><h2 data-i="pack_t"></h2><span></span></div></div>
-    <div class="rail" id="rail-packages"></div>
   </section>
 
   <section class="sec wrap reveal">
@@ -545,7 +528,7 @@ const I={
   cart_t:'سلة الشراء',cart_empty:'سلتك فارغة الآن — ابدأ التسوق وأضف منتجاتك المفضلة 💚',
   cart_sub:'المجموع الفرعي',cart_ship:'الشحن',cart_ship_v:'يُحسب عند الدفع',cart_total:'المجموع:',cart_checkout:'إتمام عملية الشراء',cart_back:'الرجوع للمتجر',
   order_head:'أرغب في توصيل الطلبات التالية:',
-  m_login:'تسجيل دخول',m_fav:'المفضلة',m_theme:'الوضع الليلي',cat_back:'رجوع للمتجر',
+  m_login:'تسجيل دخول',m_fav:'المفضلة',m_theme:'الوضع الليلي',cat_back:'الرجوع للقائمة الرئيسية',
   nav:['التخفيضات','باقات التوفير','الأكثر مبيعاً','خزائن ودواليب','أدوات المطبخ','كراسي','جديدنا','مستلزمات المنزل','التنظيف والعناية','أثاث منزلي','ديكور المنزل','أثاث مكتبي','الأجهزة المنزلية والكهربائية','مستلزمات رحلات'],
   reviews:'تقييم',
   t_search:'ابحث عن أي منتج منزلي تحتاجه 🔎',t_addcart:'أُضيف إلى السلة 🛒',t_added:'✓ تمت الإضافة',
@@ -580,7 +563,7 @@ const I={
   cart_t:'Shopping Cart',cart_empty:'Your cart is empty — start shopping and add your favourites 💚',
   cart_sub:'Subtotal',cart_ship:'Shipping',cart_ship_v:'Calculated at checkout',cart_total:'Total:',cart_checkout:'Proceed to checkout',cart_back:'Back to store',
   order_head:'I would like delivery of the following orders:',
-  m_login:'Sign in',m_fav:'Favourites',m_theme:'Dark mode',cat_back:'Back to store',
+  m_login:'Sign in',m_fav:'Favourites',m_theme:'Dark mode',cat_back:'Back to home',
   nav:['Discounts','Saving bundles','Best sellers','Cabinets & wardrobes','Kitchenware','Chairs','New arrivals','Home essentials','Cleaning & care','Home furniture','Home décor','Office furniture','Home appliances','Travel gear'],
   reviews:'reviews',
   t_search:'Search for any home product you need 🔎',t_addcart:'Added to cart 🛒',t_added:'✓ Added',
@@ -866,14 +849,18 @@ function renderCats(){
 }
 let curCat=null;
 function openCat(idx){
+ const reopening=(history.state&&history.state.wisamCat!=null);
  curCat=idx;
  document.getElementById('catTitle').innerHTML=`${LANG==='ar'?cats[idx].a:cats[idx].e}<small>${CATD[idx].length} ${LANG==='ar'?'منتج':'products'}</small>`;
  document.getElementById('catGrid').innerHTML=catItems(idx).map((p,i)=>cardHTML(p,'cat'+idx+'-'+i)).join('');
  document.getElementById('catView').classList.add('show');
  document.querySelector('.catview-body').scrollTop=0;
  lock(1);
+ if(!reopening)history.pushState({wisamCat:idx},'');
 }
-function closeCat(){curCat=null;document.getElementById('catView').classList.remove('show');lock(0);}
+function hideCat(){curCat=null;document.getElementById('catView').classList.remove('show');lock(0);}
+function closeCat(){if(curCat===null)return;if(history.state&&history.state.wisamCat!=null)history.back();else hideCat();}
+window.addEventListener('popstate',()=>{if(curCat!==null)hideCat();});
 function renderSlides(){
  document.getElementById('slides').innerHTML=slides.map(s=>{
   const eb=s.eb||(LANG==='ar'?s.eb_ar:s.eb_en);
@@ -989,7 +976,6 @@ renderAll();
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 autoRail(document.getElementById('rail-best'));
 autoRail(document.getElementById('rail-discounts'));
-autoRail(document.getElementById('rail-packages'));
 </script>
 </body>
 </html>
