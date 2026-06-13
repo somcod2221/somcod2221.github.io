@@ -564,7 +564,19 @@
   </style>
 </head>
 <body>
-
+<a href="../" id="homeBtn" style="position:fixed;top:14px;z-index:9999;display:inline-flex;align-items:center;gap:.4rem;background:#E0703A;color:#fff;padding:.5rem .9rem;border-radius:999px;font-family:sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">
+  <span id="homeBtnIcon">⟵</span><span id="homeBtnTxt">Home</span>
+</a>
+<script>
+  (function(){
+    var rtl = document.documentElement.dir === "rtl" ||
+              document.body.dir === "rtl";
+    var btn = document.getElementById("homeBtn");
+    btn.style[rtl ? "right" : "left"] = "14px";
+    document.getElementById("homeBtnTxt").textContent = rtl ? "الرئيسية" : "Home";
+    document.getElementById("homeBtnIcon").textContent = rtl ? "⟶" : "⟵";
+  })();
+</script>
 <!-- NAV -->
 <nav>
   <div class="nav-logo">English<span>Pro</span></div>
